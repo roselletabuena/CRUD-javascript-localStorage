@@ -147,7 +147,7 @@ button[autofocus]:hover {
   color: #d36559; /* Darker red color on hover */
 }
 
-#add-btn {
+#btn-add {
   text-align: right;
   padding: 10px;
   margin-top: 10px;
