@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* Adjust the max-width as per your design */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Normal */
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700; /* Bold */
+}
+
+dialog {
+  padding: 30px;
+  border: 0;
+  border-radius: 10px;
+}
+
+dialog::backdrop {
+  background-color: rgba(46, 46, 46, 0.425);
+}
+
+.form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #c9c9c9;
+  margin-bottom: 15px;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+
+.form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  color: #287ddf;
+  border-radius: 9px;
+  background-color: transparent;
+
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  margin-top: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.table th,
+.table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f0f0f0;
+  color: #444444;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table .actions {
+  text-align: center;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 12px;
+  margin-right: 5px;
+  background-color: transparent;
+  color: #1b5fdd;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  color: #d14141;
+}
+
+button[autofocus] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  color: #221b1b; /* Red color for close button */
+  border: none;
+  padding: 10px;
+  font-size: 20px !important;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 50%; /* To make it a circular button */
+  transition: background-color 0.3s ease;
+}
+
+button[autofocus]:hover {
+  color: #d36559; /* Darker red color on hover */
+}
+
+#add-btn {
+  text-align: right;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  color: #287ddf;
+  border-radius: 9px;
+  background-color: transparent;
+
+  font-weight: 400;
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
