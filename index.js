@@ -2,9 +2,6 @@ const dialog = document.querySelector('dialog');
 const showButton = document.querySelector('#btn-add');
 const closeButton = document.querySelector('#btn-close');
 
-const studentList = JSON.parse(localStorage.getItem('studentList')) || [];
-const studentForm = document.getElementById('student-form');
-
 showButton.addEventListener('click', () => {
   resetForm();
   dialog.showModal();
@@ -14,28 +11,29 @@ closeButton.addEventListener('click', () => {
   dialog.close();
 });
 
+const studentForm = document.getElementById('student-form');
 const table = document.querySelector('table tbody');
 
 populateTable();
 
 table.addEventListener('click', (event) => {
   const target = event.target;
+  const id = target.getAttribute('student-id');
+
   if (target.classList.contains('edit-btn')) {
-    const id = target.getAttribute('student-id');
     dialog.showModal();
 
-    const student = studentList.find((student) => id == student.id);
+    const student = getStudentList().find((student) => id == student.id);
 
     document.getElementById('student-id').value = student.id;
     document.getElementById('name').value = student.name;
     document.getElementById('email').value = student.email;
     document.getElementById('course').value = student.course;
   } else if (target.classList.contains('delete-btn')) {
-    const id = target.getAttribute('student-id');
     const row = target.parentNode.parentNode;
-    const newStudentList = (
-      JSON.parse(localStorage.getItem('studentList')) || []
-    ).filter((student) => id != student.id);
+    const newStudentList = getStudentList().filter(
+      (student) => id != student.id
+    );
 
     document.querySelector('table').deleteRow(row.rowIndex);
 
@@ -64,8 +62,9 @@ studentForm.addEventListener('submit', (event) => {
 
 const editForm = (formData) => {
   const studentForm = formDataToObject(formData);
+  const studentList = getStudentList();
 
-  const studentIndex = studentList.findIndex(
+  const studentIndex = getStudentList().findIndex(
     (student) => studentForm.id == student.id
   );
 
@@ -89,7 +88,9 @@ const addForm = (formData) => {
 
   const student = formDataToObject(formData);
 
+  const studentList = getStudentList();
   studentList.push(student);
+
   localStorage.setItem('studentList', JSON.stringify(studentList));
 
   const newRow = table.insertRow(-1);
@@ -101,7 +102,7 @@ const addForm = (formData) => {
 
 function populateTable() {
   let tableRow = '';
-  studentList.forEach((student) => {
+  getStudentList().forEach((student) => {
     tableRow += tableRowHTML(student);
   });
 
@@ -135,4 +136,8 @@ function tableRowHTML(student) {
 function resetForm() {
   document.querySelector('#student-id').value = '';
   studentForm.reset();
+}
+
+function getStudentList() {
+  return JSON.parse(localStorage.getItem('studentList')) || [];
 }
