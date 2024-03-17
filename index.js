@@ -2,8 +2,6 @@ const dialog = document.querySelector('dialog');
 const showButton = document.querySelector('#btn-add');
 const closeButton = document.querySelector('#btn-close');
 
-const studentForm = document.getElementById('student-form');
-
 showButton.addEventListener('click', () => {
   resetForm();
   dialog.showModal();
@@ -13,14 +11,16 @@ closeButton.addEventListener('click', () => {
   dialog.close();
 });
 
+const studentForm = document.getElementById('student-form');
 const table = document.querySelector('table tbody');
 
 populateTable();
 
 table.addEventListener('click', (event) => {
   const target = event.target;
+  const id = target.getAttribute('student-id');
+
   if (target.classList.contains('edit-btn')) {
-    const id = target.getAttribute('student-id');
     dialog.showModal();
 
     const student = getStudentList().find((student) => id == student.id);
@@ -30,11 +30,10 @@ table.addEventListener('click', (event) => {
     document.getElementById('email').value = student.email;
     document.getElementById('course').value = student.course;
   } else if (target.classList.contains('delete-btn')) {
-    const id = target.getAttribute('student-id');
     const row = target.parentNode.parentNode;
-    const newStudentList = (
-      JSON.parse(localStorage.getItem('studentList')) || []
-    ).filter((student) => id != student.id);
+    const newStudentList = getStudentList().filter(
+      (student) => id != student.id
+    );
 
     document.querySelector('table').deleteRow(row.rowIndex);
 
